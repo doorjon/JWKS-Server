@@ -30,8 +30,7 @@ function generateJWKS(publicKey) {
                 use: 'sig',
                 kid: 'rsa1',
                 n: Buffer.from(publicKey.split('-----')[2], 'base64').toString('base64'),
-                e: 'AQAB',
-                "exp" : 1672574859
+                e: 'AQAB'
             }]};
 }
 
@@ -44,7 +43,7 @@ app.get('/check', function(req, res) {
     });
 });
 
-// serves the public keys in JWKS format
+// serves public keys in JWKS format
 app.get('/.well-known/jwks.json', function(req, res) {
     const jwks = generateJWKS(publicKey);
     res.json(jwks);
